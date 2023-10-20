@@ -44,6 +44,26 @@ export function AppContextProvider({ children }) {
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const totalItemsInCart = cart.reduce((acc, item) => acc + item.quantity, 0);
 
+  /********************************************************************************************/
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearchChange = (e) => {
+    const inputValue = e.target.value.toLowerCase();
+    setSearchQuery(inputValue);
+    if (inputValue) {
+      const results = items.filter(
+        (item) =>
+          item.title.toLowerCase().includes(inputValue) ||
+          item.description.toLowerCase().includes(inputValue)
+      );
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -55,6 +75,9 @@ export function AppContextProvider({ children }) {
         quantities,
         total,
         totalItemsInCart,
+        searchQuery,
+        handleSearchChange,
+        searchResults,
       }}
     >
       {children}

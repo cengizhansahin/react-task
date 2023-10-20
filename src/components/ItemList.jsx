@@ -2,14 +2,20 @@ import React, { useContext } from "react";
 import { AppContext } from "../context/GlobalContext";
 
 function ItemList() {
-  const { items, AddToCart, quantities, handleQuantityChange } =
-    useContext(AppContext);
-
+  const {
+    items,
+    AddToCart,
+    quantities,
+    handleQuantityChange,
+    searchResults,
+    searchQuery,
+  } = useContext(AppContext);
+  const displayItems = searchQuery ? searchResults : items;
   return (
     <div>
       <div className="container">
         <div className="row justify-content-center">
-          {items.map((item) => (
+          {displayItems.map((item) => (
             <div className="col-lg-3 col-md-4 col-sm-12 my-3" key={item.id}>
               <div className="card m-auto rounded shadow">
                 <img
@@ -29,8 +35,8 @@ function ItemList() {
                       handleQuantityChange(item.id, e.target.value)
                     }
                     className="p-2 border rounded"
+                    style={{ fontSize: "12px" }}
                   />
-
                   <button
                     className="btn btn-success"
                     onClick={() => AddToCart(item)}

@@ -10,7 +10,7 @@ function Cart() {
           <h1>Toplam Fİyat: {total} ₺ </h1>
           {cart.length > 0 ? (
             cart.map((item) => (
-              <div key={item.id} className="col-lg-3 col-md-4 col-sm-12 my-3">
+              <div className="col-lg-3 col-md-4 col-sm-12 my-3">
                 <div className="card m-auto rounded shadow">
                   <img
                     className="card-img-top"
@@ -34,7 +34,7 @@ function Cart() {
             ))
           ) : (
             <div className="alert alert-danger" role="alert">
-              SEPET BOŞ
+              SEPETE ÜRÜN YOK
             </div>
           )}
         </div>
