@@ -27,7 +27,6 @@ function UrunDetay() {
             <p>{items.description}</p>
           </div>
         </div>
-        items
       </div>
     </div>
   );
