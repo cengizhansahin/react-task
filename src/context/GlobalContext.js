@@ -46,17 +46,17 @@ export function AppContextProvider({ children }) {
 
   /********************************************************************************************/
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [inputGirdi, setInputGirdi] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearchChange = (e) => {
-    const inputValue = e.target.value.toLowerCase();
-    setSearchQuery(inputValue);
-    if (inputValue) {
+    const inputDegeri = e.target.value.toLowerCase();
+    setInputGirdi(inputDegeri);
+    if (inputDegeri) {
       const results = items.filter(
         (item) =>
-          item.title.toLowerCase().includes(inputValue) ||
-          item.description.toLowerCase().includes(inputValue)
+          item.title.toLowerCase().includes(inputDegeri) ||
+          item.description.toLowerCase().includes(inputDegeri)
       );
       setSearchResults(results);
     } else {
@@ -75,7 +75,7 @@ export function AppContextProvider({ children }) {
         quantities,
         total,
         totalItemsInCart,
-        searchQuery,
+        inputGirdi,
         handleSearchChange,
         searchResults,
       }}

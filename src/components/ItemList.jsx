@@ -1,16 +1,19 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 function ItemList() {
+  const navigate = useNavigate();
+
   const {
     items,
     AddToCart,
     quantities,
     handleQuantityChange,
     searchResults,
-    searchQuery,
+    inputGirdi,
   } = useContext(AppContext);
-  const displayItems = searchQuery ? searchResults : items;
+  const displayItems = inputGirdi ? searchResults : items;
   return (
     <div>
       <div className="container">
@@ -23,6 +26,8 @@ function ItemList() {
                   src={item.thumbnail}
                   height={300}
                   alt="Card cap"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate(`urundetay/${item.id}`)}
                 />
                 <div className="card-body">
                   <h5 className="card-title text-truncate">{item.title}</h5>

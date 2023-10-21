@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 function Cart() {
   const { cart, RemoveFromCart, total } = useContext(AppContext);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -17,6 +19,8 @@ function Cart() {
                     src={item.thumbnail}
                     height={300}
                     alt="Card image cap"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => navigate(`/urundetay/${item.id}`)}
                   />
                   <div className="card-body">
                     <h5 className="card-title text-truncate">{item.title}</h5>
