@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function ItemList() {
   const navigate = useNavigate();
 
+  const handleAlert = () => {
+    Swal.fire("Tebrikler!", "Ürün sepete eklendi", "success");
+  };
   const {
     items,
     AddToCart,
@@ -44,7 +48,10 @@ function ItemList() {
                   />
                   <button
                     className="btn btn-success"
-                    onClick={() => AddToCart(item)}
+                    onClick={() => {
+                      AddToCart(item);
+                      handleAlert();
+                    }}
                   >
                     Sepete Ekle
                   </button>

@@ -1,10 +1,20 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 function Cart() {
   const { cart, RemoveFromCart, total } = useContext(AppContext);
   const navigate = useNavigate();
-
+  const handleAlert2 = () => {
+    Swal.fire({
+      title: "Üzgünüz!",
+      text: "Ürün sepetten çıkarıldı",
+      iconHtml: "😟",
+      customClass: {
+        icon: "custom-icon",
+      },
+    });
+  };
   return (
     <div>
       <div className="container">
@@ -28,7 +38,10 @@ function Cart() {
                     <p className="card-text">Ürün Miktarı: {item.quantity}</p>
                     <button
                       className="btn btn-outline-danger"
-                      onClick={() => RemoveFromCart(item.id)}
+                      onClick={() => {
+                        RemoveFromCart(item.id);
+                        handleAlert2();
+                      }}
                     >
                       Sepetten Çıkar
                     </button>

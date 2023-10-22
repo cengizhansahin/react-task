@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+// import SweetAlert from "react-sweetalert";
 
 export const AppContext = createContext();
 
@@ -7,6 +8,7 @@ export function AppContextProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [items, setItems] = useState([]);
   const [quantities, setQuantities] = useState({});
+  // const [showAlert, setShowAlert] = useState([]);
 
   useEffect(() => {
     axios
