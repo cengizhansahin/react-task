@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 function ItemList() {
   const navigate = useNavigate();
 
   const handleAlert = () => {
-    Swal.fire("Tebrikler!", "Ürün sepete eklendi", "success");
+    toast.success("Ürün sepete eklendi! 👍");
   };
   const {
     items,

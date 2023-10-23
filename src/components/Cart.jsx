@@ -1,19 +1,13 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+
 function Cart() {
   const { cart, RemoveFromCart, total } = useContext(AppContext);
   const navigate = useNavigate();
   const handleAlert2 = () => {
-    Swal.fire({
-      title: "Üzgünüz!",
-      text: "Ürün sepetten çıkarıldı",
-      iconHtml: "😟",
-      customClass: {
-        icon: "custom-icon",
-      },
-    });
+    toast.success("Ürün listeden çıkartıldı! 😞");
   };
   return (
     <div>
@@ -22,7 +16,7 @@ function Cart() {
           <h1>Toplam Fİyat: {total} ₺ </h1>
           {cart.length > 0 ? (
             cart.map((item) => (
-              <div className="col-lg-3 col-md-4 col-sm-12 my-3">
+              <div className="col-lg-3 col-md-4 col-sm-12 my-3" key={item.id}>
                 <div className="card m-auto rounded shadow">
                   <img
                     className="card-img-top"
