@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Cart() {
-  const { cart, RemoveFromCart, total } = useContext(AppContext);
+  const { cart, RemoveFromCart, toplamFiyat } = useContext(AppContext);
   const navigate = useNavigate();
   const handleAlert2 = () => {
     toast.success("Ürün listeden çıkartıldı! 😞");
@@ -13,7 +13,7 @@ function Cart() {
     <div>
       <div className="container">
         <div className="row justify-content-center">
-          <h1>Toplam Fİyat: {total} ₺ </h1>
+          <h1>Toplam Fiyat: {toplamFiyat} ₺ </h1>
           {cart.length > 0 ? (
             cart.map((item) => (
               <div className="col-lg-3 col-md-4 col-sm-12 my-3" key={item.id}>
@@ -45,7 +45,7 @@ function Cart() {
             ))
           ) : (
             <div className="alert alert-danger" role="alert">
-              SEPETE ÜRÜN YOK
+              SEPETE ÜRÜN YOK 😭
             </div>
           )}
         </div>

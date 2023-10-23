@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-// import SweetAlert from "react-sweetalert";
 
 export const AppContext = createContext();
 
@@ -8,7 +7,6 @@ export function AppContextProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [items, setItems] = useState([]);
   const [quantities, setQuantities] = useState({});
-  // const [showAlert, setShowAlert] = useState([]);
 
   useEffect(() => {
     axios
@@ -43,8 +41,11 @@ export function AppContextProvider({ children }) {
       setCart(inCart);
     }
   }
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const totalItemsInCart = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const toplamFiyat = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+  const sepetToplam = cart.reduce((total, item) => total + item.quantity, 0);
 
   /********************************************************************************************/
 
@@ -66,6 +67,19 @@ export function AppContextProvider({ children }) {
     }
   };
 
+  /********************************************************************************************/
+
+  const [kategoriler, setKategoriler] = useState([]);
+  const kategoriList = () => {
+    let c = new Set();
+    for (const item of items) {
+      c.add(item.category);
+    }
+    setKategoriler([...c]);
+  };
+
+  const [secilenKategori, setSecilenKategori] = useState([]);
+
   return (
     <AppContext.Provider
       value={{
@@ -75,11 +89,15 @@ export function AppContextProvider({ children }) {
         RemoveFromCart,
         handleQuantityChange,
         quantities,
-        total,
-        totalItemsInCart,
+        toplamFiyat,
+        sepetToplam,
         inputGirdi,
         handleSearchChange,
         searchResults,
+        kategoriler,
+        kategoriList,
+        setSecilenKategori,
+        secilenKategori,
       }}
     >
       {children}

@@ -3,14 +3,20 @@ import { AppContext } from "../context/GlobalContext";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  const { totalItemsInCart, handleSearchChange } = useContext(AppContext);
+  const {
+    sepetToplam,
+    handleSearchChange,
+    kategoriler,
+    kategoriList,
+    setSecilenKategori,
+  } = useContext(AppContext);
 
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            Anasafya
+            Anasayfa
           </Link>
           <button
             className="navbar-toggler"
@@ -30,24 +36,31 @@ function Navbar() {
                   Ürünler
                 </Link>
               </li>
-              {/* <li className="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
                   to="#"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  onClick={kategoriList}
                 >
                   Kategoriler
                 </Link>
                 <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Action
-                    </Link>
-                  </li>
+                  {kategoriler.map((kategori) => (
+                    <li key={kategori}>
+                      <Link
+                        className="dropdown-item"
+                        to="#"
+                        onClick={() => setSecilenKategori(kategori)}
+                      >
+                        {kategori}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
-              </li> */}
+              </li>
             </ul>
             <form
               className="d-flex"
@@ -71,7 +84,7 @@ function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/cart">
                   <i className="fa-solid fa-cart-shopping fa-2x"></i>(
-                  {totalItemsInCart})
+                  {sepetToplam})
                 </Link>
               </li>
             </ul>

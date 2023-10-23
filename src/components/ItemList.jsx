@@ -16,13 +16,17 @@ function ItemList() {
     handleQuantityChange,
     searchResults,
     inputGirdi,
+    secilenKategori,
   } = useContext(AppContext);
   const displayItems = inputGirdi ? searchResults : items;
+  const filtrelenenUrunler = secilenKategori
+    ? displayItems.filter((urun) => urun.category === secilenKategori)
+    : displayItems;
   return (
     <div>
       <div className="container">
         <div className="row justify-content-center">
-          {displayItems.map((item) => (
+          {filtrelenenUrunler.map((item) => (
             <div className="col-lg-3 col-md-4 col-sm-12 my-3" key={item.id}>
               <div className="card m-auto rounded shadow">
                 <img
