@@ -47,8 +47,8 @@ function ItemList() {
                     onChange={(e) =>
                       handleQuantityChange(item.id, e.target.value)
                     }
-                    className="p-2 border rounded"
-                    style={{ fontSize: "12px" }}
+                    className="p-2 border rounded mx-2"
+                    style={{ fontSize: "12px", width:"60px" }}
                   />
                   <button
                     className="btn btn-success"

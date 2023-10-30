@@ -32,7 +32,12 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/"
+                  onClick={() => setSecilenKategori(null)}
+                >
                   Ürünler
                 </Link>
               </li>
@@ -43,7 +48,7 @@ function Navbar() {
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  onClick={kategoriList}
+                  onClick={() => kategoriList()}
                 >
                   Kategoriler
                 </Link>
@@ -52,8 +57,10 @@ function Navbar() {
                     <li key={kategori}>
                       <Link
                         className="dropdown-item"
-                        to="#"
-                        onClick={() => setSecilenKategori(kategori)}
+                        to="/"
+                        onClick={() => {
+                          setSecilenKategori(kategori);
+                        }}
                       >
                         {kategori}
                       </Link>
