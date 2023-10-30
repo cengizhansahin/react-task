@@ -25,10 +25,10 @@ export function AppContextProvider({ children }) {
     );
     if (existingItemIndex > -1) {
       const newCart = [...cart];
-      newCart[existingItemIndex].quantity += quantities[item.id];
+      newCart[existingItemIndex].quantity += quantities[item.id] || 1;
       setCart(newCart);
     } else {
-      item.quantity = quantities[item.id];
+      item.quantity = quantities[item.id] || 1;
       setCart((prevCart) => [...prevCart, item]);
     }
   }
