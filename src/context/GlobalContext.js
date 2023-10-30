@@ -25,10 +25,10 @@ export function AppContextProvider({ children }) {
     );
     if (existingItemIndex > -1) {
       const newCart = [...cart];
-      newCart[existingItemIndex].quantity += quantities[item.id] || 1;
+      newCart[existingItemIndex].quantity += quantities[item.id];
       setCart(newCart);
     } else {
-      item.quantity = quantities[item.id] || 1;
+      item.quantity = quantities[item.id];
       setCart((prevCart) => [...prevCart, item]);
     }
   }
@@ -56,10 +56,8 @@ export function AppContextProvider({ children }) {
     const inputDegeri = e.target.value.toLowerCase();
     setInputGirdi(inputDegeri);
     if (inputDegeri) {
-      const results = items.filter(
-        (item) =>
-          item.title.toLowerCase().includes(inputDegeri) ||
-          item.description.toLowerCase().includes(inputDegeri)
+      const results = items.filter((item) =>
+        item.title.toLowerCase().includes(inputDegeri)
       );
       setSearchResults(results);
     } else {
@@ -78,7 +76,7 @@ export function AppContextProvider({ children }) {
     setKategoriler([...c]);
   };
 
-  const [secilenKategori, setSecilenKategori] = useState([]);
+  const [secilenKategori, setSecilenKategori] = useState(null);
 
   return (
     <AppContext.Provider
